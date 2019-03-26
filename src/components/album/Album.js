@@ -1,9 +1,11 @@
 import React from 'react';
-//import classes from './Album.scss';
+import classes from './Album.scss';
+import Preview from '../Preview/Preview';
 
 class Album extends React.Component {
   state = {
     currentPhoto: null,
+    currentPhotoID: null,
     photoList: [
       {
         id: 1,
@@ -42,25 +44,34 @@ class Album extends React.Component {
         alt: '8 alt',
       }
       ],
-    isClick: false
+    isClicked: false
   };
+  onPictureClickHandler (evt, id) {
+    evt.preventDefault();
+    const currentPhoto = this.state.photoList.find((item) => item.id === id);
+    this.setState({
+      isClicked: true,
+      currentPhotoID: id,
+      currentPhoto
+    })
+  }
 
 render(){
     return (
      <React.Fragment>
-      <div>
-        <ul>
+      <div className={classes.album}>
+        <ul className={classes.albumList}>
         {this.state.photoList.map((photo) => {
-          return (<li key = {photo.id}>
-              <a href={photo.url}>
-                <img src={photo.url} alt={photo.alt}/>
+          return (<li key = {photo.id} className={classes.albumItem}>
+              <a href={photo.url} className={classes.albumLink} onClick={(evt) => this.onPictureClickHandler(evt, photo.id)}>
+                <img src={photo.url} alt={photo.alt} className={classes.albumImage}/>
               </a>
           </li>)
         })}
         </ul>
       </div>
   {this.state.isClicked
-    ? /*<Previev/>*/null
+    ? <Preview currentPhoto = {this.state.currentPhoto} photoList = {this.state.photoList} />
   : null}
      </React.Fragment>
     )
