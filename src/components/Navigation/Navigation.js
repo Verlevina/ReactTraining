@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Navigation.scss';
 import MenuButton from '../../UI/MenuButton/MenuButton';
+import {Link} from "react-router-dom";
 
 class Navigate extends Component {
   state = {
@@ -20,15 +21,16 @@ class Navigate extends Component {
     if(!this.state.isClicked) {
       cls.push(classes.menuClose);
     }
-    console.log(cls)
-    console.log(this.state.isClicked)
-
     return(
       <React.Fragment>
       <nav className={cls.join(' ')}>
         <ul>
-          <li>1 пункт</li>
-          <li>2 пункт</li>
+          <li>
+            <Link to={`/Album`}>Альбом</Link>
+          </li>
+          <li>
+            <Link to={`/Currency`}>Валюты</Link>
+          </li>
           <li>3 пункт</li>
           <li>4 пункт</li>
         </ul>

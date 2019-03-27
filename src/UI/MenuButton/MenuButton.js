@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MenuButton.scss'
+import classes from './MenuButton.scss';
 
 const MenuButton = function(props) {
   let cls = [classes.MenuButton];
@@ -7,7 +7,8 @@ const MenuButton = function(props) {
     cls.push(classes.MenuButtonClose)
   }
 return(
-  <button onClick={props.onClickHandler} className={cls.join(' ')}>меню</button>
+  <button onClick={props.onClickHandler} className={cls.join(' ')}>меню
+  </button>
 )
 };
 export default MenuButton;
