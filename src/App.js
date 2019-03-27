@@ -14,19 +14,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Navigation/>
         <main>
-            <Switch>
+
+
+          <Switch>
               <Route path="/Album" component={Album}/>
               <Route path="/Currency" component={Currency}/>
               <Route path="/Calculator" component={Calculator}/>
-              {/*<Route path="/" component={QuizList}/>*/}
+             {/*// <Route path="/Game" component={Game}/>*/}
               {/*<Route path="/aboutUs" component={AboutUs}/>*/}
             </Switch>
         </main>
+
       </div>
     );
   }

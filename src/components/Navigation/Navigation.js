@@ -34,7 +34,9 @@ class Navigate extends Component {
           <li>
             <Link to={`/Calculator`}>Калькулятор</Link>
           </li>
-          <li>4 пункт</li>
+          <li>
+            <Link to={`/Game`}>Игра</Link>
+          </li>
         </ul>
       </nav>
       <MenuButton isClicked = {this.state.isClicked} onClickHandler = {this.onCloseButtonClickHandler}/>

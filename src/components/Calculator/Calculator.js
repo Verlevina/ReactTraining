@@ -17,6 +17,17 @@ class Calculator extends Component {
   };
 
   async componentDidMount () {
+    const storage = window.localStorage;
+    if (storage.getItem('valute')) {
+      this.setState({
+        selectedValue: storage.getItem('valute')
+      })
+    }
+    if (storage.getItem('value')) {
+      this.setState({
+        inputValue: storage.getItem('value')
+      })
+    }
     await this.getResponceToValute ();
     this.calculateResult();
   }
@@ -32,7 +43,7 @@ class Calculator extends Component {
 
   };
   calculateResult = (rub, val,) => {
-   if(!rub) {
+    if(!rub) {
      rub = this.state.inputValue;
    }
    if(!val) {
@@ -46,16 +57,12 @@ class Calculator extends Component {
   })
 };
 
-  onChangeValueInput = function (event) {
-    console.log(event.target.value);
-
+  onChangeValueInput = (event) => {
     let inputValue = event.target.value;
     this.calculateResult(inputValue);
     this.setState ({
       inputValue
     });
-
-
   };
 
   getResponceToValute = async function () {
@@ -68,6 +75,12 @@ class Calculator extends Component {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  onButtonRememberToStorageClick = () => {
+   const myStorage = window.localStorage;
+    myStorage.setItem('valute', this.state.selectedValue);
+    myStorage.setItem('value', this.state.inputValue);
   };
 
 
@@ -91,8 +104,14 @@ class Calculator extends Component {
           </select>
             <br/>
             <label htmlFor="inputValue">Введите сумму для расчета</label>
-            <input type='number' id='inputValue' value={this.state.inputValue}  onChange={this.onChangeValueInput.bind(this)}/>{this.state.selectedValue}.
+            <input
+              type='number'
+              id='inputValue'
+              value={this.state.inputValue}
+              onChange={this.onChangeValueInput.bind(this)}/>
+            <span>{this.state.selectedValue}.</span>
             <p>сумма в руб.= {this.state.calculateValue}</p>
+            <button onClick={this.onButtonRememberToStorageClick}>Запомнить значения!</button>
           </div>
         }
       </div>

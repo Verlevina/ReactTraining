@@ -14,11 +14,16 @@ class Currency extends Component {
     await this.getResponceToValute ()
   }
 
+  onButtonClickReload = () => {
+    this.setState({
+      loading: true
+    });
+    this.getResponceToValute();
+  };
+
   getResponceToValute = async function () {
     try {
       const response = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
-      console.log(response,response.data.Valute, response.data.Date);
-      console.log(response,response.data.Valute.AUD, response.data.Date);
       this.setState({
         loading: false,
         valute: response.data.Valute,
@@ -32,7 +37,7 @@ class Currency extends Component {
   render(){
     return (
       <div style={{color:'red', border:'2px solid #ccc'}} className={classes.Currency}>
-        <h1>Последнее обновление валют на сайте:<br/>
+        <h1>Данные от:<br/>
           <strong>{this.state.loading
             ? 'Подождите, данные загружаются'
             : (this.state.valuteGetDay)
@@ -74,7 +79,7 @@ class Currency extends Component {
             </tbody>
           </table>
             }
-            <button onClick = {this.getResponceToValute.bind(this)}>Обновить</button>
+            <button onClick = {this.onButtonClickReload.bind(this)}>Обновить</button>
 
       </div>)
   }
