@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Navigation.scss';
-import MenuButton from '../../UI/MenuButton/MenuButton';
 import {Link} from "react-router-dom";
+import MenuButton from "../../UI/MenuButton/MenuButton";
 
 class Navigate extends Component {
   state = {
@@ -31,7 +31,9 @@ class Navigate extends Component {
           <li>
             <Link to={`/Currency`}>Валюты</Link>
           </li>
-          <li>3 пункт</li>
+          <li>
+            <Link to={`/Calculator`}>Калькулятор</Link>
+          </li>
           <li>4 пункт</li>
         </ul>
       </nav>

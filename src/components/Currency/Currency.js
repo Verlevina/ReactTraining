@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-//import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import Loader from '../../UI/Loader/Loader';
 import classes from './Currency.scss'
