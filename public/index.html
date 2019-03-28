@@ -54,6 +54,8 @@
           }
         };
   const maxBallCount  = 3;
+  const timeToWin = 10000;
+  const intervatToNewBall = 1500;
 
 
   // class Paddle {
@@ -130,7 +132,7 @@
         this.name.coordinates.dy = -this.name.coordinates.dy;
       }
        if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius ) {
-         clearTimeout(win, 100000);
+         clearTimeout(win, timeToWin);
         alert("GAME OVER");
          document.location.reload();
          clearInterval(interval);
@@ -185,13 +187,13 @@
       flag = !flag;
       counter++
     } else {
-      clearInterval(doMoreBalls, 100);}
+      clearInterval(doMoreBalls, intervatToNewBall);}
 
   };
 
   const balls = [new Rect()];
    let counter = 1;
-   setInterval(doMoreBalls, 1000);
+   setInterval(doMoreBalls, intervatToNewBall);
 
    const win = function () {
      alert('Winner');
@@ -199,7 +201,7 @@
      clearInterval(interval);
    };
 
-  setTimeout(win, 100000);
+  setTimeout(win, timeToWin);
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
