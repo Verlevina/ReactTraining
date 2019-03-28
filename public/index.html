@@ -44,34 +44,123 @@
 
   const canvas = document.querySelector('#gameCanvas');
   const ctx = canvas.getContext("2d");
-  const ball = {
-    radius: 10,
-    coordinates: {
-      x: canvas.width / 2,
-      y:  30,
-      dx: 2,
-      dy: 2
+  paddle = {
+          width: 80,
+          height: 10,
+          coordinates: {
+            x: 10,
+            y: canvas.height - 30,
+            currentCenterPosition: null
+          }
+        };
+  const maxBallCount  = 3;
+
+
+  // class Paddle {
+  //
+  //   constructor (){
+  //
+  //     this.paddle = {
+  //       width: 80,
+  //       height: 10,
+  //       coordinates: {
+  //         x: 10,
+  //         y: canvas.height - 30,
+  //         currentCenterPosition: null
+  //       }
+  //     };
+  //
+  //   }
+  //
+  //   draw () {
+  //     console.dir(this.paddle);
+  //     ctx.beginPath();
+  //     ctx.rect( this.paddle.coordinates.x, this.paddle.coordinates.y, this.paddle.width, this.paddle.height);
+  //     ctx.fillStyle = "red";
+  //     ctx.fill();
+  //     ctx.closePath();
+  //   }
+  //   start (event) {
+  //     this.draw();
+  //     let currentCoordinate = event.x - this.paddle.width / 2 - event.path[0].offsetLeft;
+  //     this.paddle.coordinates.currentCenterPosition = currentCoordinate;
+  //     this.paddle.coordinates.x = currentCoordinate ;
+  //
+  //   }
+  // }
+
+
+   class Ball {
+    constructor (name){
+      // super();
+      this.name = {
+        name: name,
+        radius: 10,
+        color: "#0095DD",
+        coordinates: {
+          x: canvas.width / 2,
+          y:  30,
+          dx: 2,
+          dy: 2
+        }
+      }
     }
-  };
-  const paddle = {
-    width: 80,
-    height: 10,
-    coordinates: {
-      x: 10,
-      y: canvas.height - 30,
-      currentCenterPosition: null
+
+    draw () {
+      ctx.beginPath();
+      ctx.arc(this.name.coordinates.x, this.name.coordinates.y, this.name.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.name.color;
+      ctx.fill();
+      ctx.closePath();
     }
 
-  };
+    start() {
+     this.draw();
+      if ( this.name.coordinates.x + this.name.coordinates.dx > canvas.width - this.name.radius ||
+        this.name.coordinates.x + this.name.coordinates.dx < this.name.radius) {
+        this.name.coordinates.dx = -this.name.coordinates.dx;
+      }
+      if( this.name.coordinates.y + this.name.coordinates.dy < this.name.radius) {
+        this.name.coordinates.dy = -this.name.coordinates.dy;
+      }
+      if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius - (canvas.height -
+        paddle.coordinates.y) + paddle.height / 2 && this.name.coordinates.x < paddle.coordinates.x +
+        paddle.width &&
+        this.name.coordinates.x > paddle.coordinates.x) {
+        this.name.coordinates.dy = -this.name.coordinates.dy;
+      }
+       if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius ) {
+         clearTimeout(win, 100000);
+        alert("GAME OVER");
+         document.location.reload();
+         clearInterval(interval);
+
+       }
 
 
-  function drawBall() {
-    ctx.beginPath();
-    ctx.arc(ball.coordinates.x, ball.coordinates.y, ball.radius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
+      this.name.coordinates.x += this.name.coordinates.dx;
+      this.name.coordinates.y += this.name.coordinates.dy;
+    }
+
+
   }
+  class Rect extends Ball {
+     constructor(){
+       super();
+       this.name.width = 10;
+       this.name.heighth = 10;
+       this.name.color = 'green'
+       }
+    draw () {
+      ctx.beginPath();
+      ctx.rect( this.name.coordinates.x, this.name.coordinates.y, this.name.width,  this.name.heighth);
+      ctx.fillStyle = this.name.color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+  }
+
 
   function drawPaddle () {
     ctx.beginPath();
@@ -81,37 +170,48 @@
     ctx.closePath();
   }
   function movePaddle (event) {
-    console.log(event.path[0].offsetLeft);
     let currentCoordinate = event.x - paddle.width / 2 - event.path[0].offsetLeft;
     paddle.coordinates.currentCenterPosition = currentCoordinate;
     paddle.coordinates.x = currentCoordinate ;
 
   }
 
+
+  let flag = true;
+
+  const doMoreBalls = () => {
+    if(counter < maxBallCount) {
+     flag ? balls.push(new Ball) : balls.push(new Rect);
+      flag = !flag;
+      counter++
+    } else {
+      clearInterval(doMoreBalls, 100);}
+
+  };
+
+  const balls = [new Rect()];
+   let counter = 1;
+   setInterval(doMoreBalls, 1000);
+
+   const win = function () {
+     alert('Winner');
+     document.location.reload();
+     clearInterval(interval);
+   };
+
+  setTimeout(win, 100000);
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    if(ball.coordinates.x + ball.coordinates.dx  > canvas.width-ball.radius || ball.coordinates.x + ball.coordinates.dx < ball.radius) {
-     ball.coordinates.dx  = -ball.coordinates.dx ;
+    for (let i = 0; i< balls.length; i++ ) {
+      balls[i].start();
     }
-    if(  ball.coordinates.y + ball.coordinates.dy > canvas.height - ball.radius || ball.coordinates.y +
-      ball.coordinates.dy  < ball.radius) {
-      ball.coordinates.dy = -ball.coordinates.dy;
-    }
-    if (ball.coordinates.y + ball.coordinates.dy >  canvas.height - ball.radius - (canvas.height -
-      paddle.coordinates.y) + paddle.height / 2 && ball.coordinates.x < paddle.coordinates.x + paddle.width &&
-      ball.coordinates.x > paddle.coordinates.x) {
-        ball.coordinates.dy = -ball.coordinates.dy;
-      }
+    console.dir( balls);
 
-
-    ball.coordinates.x += ball.coordinates.dx;
-    ball.coordinates.y += ball.coordinates.dy;
-    drawPaddle();
-
-    canvas.addEventListener('mousemove', movePaddle)
+    drawPaddle ();
+    canvas.addEventListener('mousemove', movePaddle);
   }
-  setInterval(draw, 10);
+ const interval = setInterval(draw, 10);
 
 
 </script>
