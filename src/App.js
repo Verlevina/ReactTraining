@@ -5,7 +5,8 @@ import Album from './components/album/Album';
 import Navigation from "./components/Navigation/Navigation";
 import {Route, Switch} from 'react-router-dom';
 import Currency from "./components/Currency/Currency";
-import Calculator from "./components/Calculator/Calculator"
+import Calculator from "./components/Calculator/Calculator";
+import Game from './components/Game/Game';
 
 
 
@@ -26,7 +27,7 @@ class App extends Component {
               <Route path="/Album" component={Album}/>
               <Route path="/Currency" component={Currency}/>
               <Route path="/Calculator" component={Calculator}/>
-             {/*// <Route path="/Game" component={Game}/>*/}
+              <Route path="/Game" component={Game}/>
               {/*<Route path="/aboutUs" component={AboutUs}/>*/}
             </Switch>
         </main>

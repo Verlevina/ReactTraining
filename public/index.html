@@ -1,222 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+	<meta charset="utf-8"/>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"/>
+	<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+	/>
+	<meta name="theme-color" content="#000000"/>
+	<!--
+	  manifest.json provides metadata used when your web app is installed on a
+	  user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+	-->
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+	<!--
+	  Notice the use of %PUBLIC_URL% in the tags above.
+	  It will be replaced with the URL of the `public` folder during the build.
+	  Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+	  Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+	  work correctly both with client-side routing and a non-root public URL.
+	  Learn how to configure a non-root public URL by running `npm run build`.
+	-->
+	<title>React App</title>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
 
-    <footer style="display: flex; justify-content: center;">
-      <canvas style="margin: auto" id='gameCanvas' width='480' height='320' />
-<script>
+<!--<footer style="display: flex; justify-content: center;">-->
+	<!--<canvas style="margin: auto" id='gameCanvas' width='500' height='500'/>-->
+	<!--<script>-->
 
-  const canvas = document.querySelector('#gameCanvas');
-  const ctx = canvas.getContext("2d");
-  paddle = {
-          width: 80,
-          height: 10,
-          coordinates: {
-            x: 10,
-            y: canvas.height - 30,
-            currentCenterPosition: null
-          }
-        };
-  const maxBallCount  = 3;
-  const timeToWin = 10000;
-  const intervatToNewBall = 1500;
-
-
-  // class Paddle {
-  //
-  //   constructor (){
-  //
-  //     this.paddle = {
-  //       width: 80,
-  //       height: 10,
-  //       coordinates: {
-  //         x: 10,
-  //         y: canvas.height - 30,
-  //         currentCenterPosition: null
-  //       }
-  //     };
-  //
-  //   }
-  //
-  //   draw () {
-  //     console.dir(this.paddle);
-  //     ctx.beginPath();
-  //     ctx.rect( this.paddle.coordinates.x, this.paddle.coordinates.y, this.paddle.width, this.paddle.height);
-  //     ctx.fillStyle = "red";
-  //     ctx.fill();
-  //     ctx.closePath();
-  //   }
-  //   start (event) {
-  //     this.draw();
-  //     let currentCoordinate = event.x - this.paddle.width / 2 - event.path[0].offsetLeft;
-  //     this.paddle.coordinates.currentCenterPosition = currentCoordinate;
-  //     this.paddle.coordinates.x = currentCoordinate ;
-  //
-  //   }
-  // }
+      <!--const canvas = document.querySelector('#gameCanvas');-->
+      <!--const ctx = canvas.getContext("2d");-->
+      <!--const maxBallCount = 4;-->
+      <!--const timeToWin = 10000;-->
+      <!--const intervatToNewBall = 1500;-->
+      <!--const gameViewier = {-->
+        <!--paddle: {-->
+          <!--width: 80,-->
+          <!--height: 10,-->
+          <!--coordinates: {-->
+            <!--x: 10,-->
+            <!--y: canvas.height - 30,-->
+            <!--currentCenterPosition: null-->
+          <!--}-->
+        <!--},-->
+        <!--balls:[]-->
+      <!--};-->
 
 
-   class Ball {
-    constructor (name){
-      // super();
-      this.name = {
-        name: name,
-        radius: 10,
-        color: "#0095DD",
-        coordinates: {
-          x: canvas.width / 2,
-          y:  30,
-          dx: 2,
-          dy: 2
-        }
-      }
-    }
+      <!--class Paddle {-->
 
-    draw () {
-      ctx.beginPath();
-      ctx.arc(this.name.coordinates.x, this.name.coordinates.y, this.name.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.name.color;
-      ctx.fill();
-      ctx.closePath();
-    }
+        <!--draw() {-->
+          <!--ctx.beginPath();-->
+          <!--ctx.rect(gameViewier.paddle.coordinates.x, gameViewier.paddle.coordinates.y, gameViewier.paddle.width, gameViewier.paddle.height);-->
+          <!--ctx.fillStyle = "red";-->
+          <!--ctx.fill();-->
+          <!--ctx.closePath();-->
 
-    start() {
-     this.draw();
-      if ( this.name.coordinates.x + this.name.coordinates.dx > canvas.width - this.name.radius ||
-        this.name.coordinates.x + this.name.coordinates.dx < this.name.radius) {
-        this.name.coordinates.dx = -this.name.coordinates.dx;
-      }
-      if( this.name.coordinates.y + this.name.coordinates.dy < this.name.radius) {
-        this.name.coordinates.dy = -this.name.coordinates.dy;
-      }
-      if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius - (canvas.height -
-        paddle.coordinates.y) + paddle.height / 2 && this.name.coordinates.x < paddle.coordinates.x +
-        paddle.width &&
-        this.name.coordinates.x > paddle.coordinates.x) {
-        this.name.coordinates.dy = -this.name.coordinates.dy;
-      }
-       if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius ) {
-         clearTimeout(win, timeToWin);
-        alert("GAME OVER");
-         document.location.reload();
-         clearInterval(interval);
+        <!--}-->
 
-       }
+        <!--move(event) {-->
+          <!--let currentCoordinate = event.x - gameViewier.paddle.width / 2 - event.path[0].offsetLeft;-->
+          <!--gameViewier.paddle.coordinates.currentCenterPosition = currentCoordinate;-->
+          <!--gameViewier.paddle.coordinates.x = currentCoordinate;-->
+        <!--}-->
+      <!--}-->
 
+	  <!--//падающие шары-->
+		 <!--class Ball {-->
+		  <!--constructor (name){-->
+			<!--this.name = {-->
+			  <!--name: name,-->
+			  <!--radius: 10,-->
+			  <!--color: "#0095DD",-->
+			  <!--coordinates: {-->
+				<!--x: Math.floor(Math.random() * canvas.width),-->
+				<!--y:  30,-->
+				<!--dx: 2,-->
+				<!--dy: 2-->
+			  <!--}-->
+			<!--}-->
+		  <!--}-->
 
-      this.name.coordinates.x += this.name.coordinates.dx;
-      this.name.coordinates.y += this.name.coordinates.dy;
-    }
+		  <!--draw () {-->
+			<!--ctx.beginPath();-->
+			<!--ctx.arc(this.name.coordinates.x, this.name.coordinates.y, this.name.radius, 0, Math.PI * 2);-->
+			<!--ctx.fillStyle = this.name.color;-->
+			<!--ctx.fill();-->
+			<!--ctx.closePath();-->
+		  <!--}-->
 
+		  <!--start() {-->
+		   <!--this.draw();-->
 
-  }
-  class Rect extends Ball {
-     constructor(){
-       super();
-       this.name.width = 10;
-       this.name.heighth = 10;
-       this.name.color = 'green'
-       }
-    draw () {
-      ctx.beginPath();
-      ctx.rect( this.name.coordinates.x, this.name.coordinates.y, this.name.width,  this.name.heighth);
-      ctx.fillStyle = this.name.color;
-      ctx.fill();
-      ctx.closePath();
-    }
+		   <!--if ( this.name.coordinates.x + this.name.coordinates.dx > canvas.width - this.name.radius ||-->
+			  <!--this.name.coordinates.x + this.name.coordinates.dx < this.name.radius) {-->
+			  <!--this.name.coordinates.dx = -this.name.coordinates.dx;-->
+			<!--}-->
 
-  }
+			<!--if( this.name.coordinates.y + this.name.coordinates.dy < this.name.radius) {-->
+			  <!--this.name.coordinates.dy = -this.name.coordinates.dy;-->
+			<!--}-->
+			<!--if ( this.name.coordinates.y + this.name.coordinates.dy-->
+			  <!--&gt; canvas.height - this.name.radius - (canvas.height - gameViewier.paddle.coordinates.y) +-->
+			  <!--gameViewier.paddle.height-->
+			  <!--/ 2-->
+			  <!--&& this.name.coordinates.x < gameViewier.paddle.coordinates.x + gameViewier.paddle.width-->
+			  <!--&& this.name.coordinates.x > gameViewier.paddle.coordinates.x) {-->
+			  <!--this.name.coordinates.dy = -this.name.coordinates.dy;-->
+			<!--}-->
+			 <!--if ( this.name.coordinates.y + this.name.coordinates.dy > canvas.height - this.name.radius ) {-->
+			 <!--console.dir(gameViewier.balls);-->
+		     <!--clearTimeout(winTimeout);-->
 
+			  <!--alert("GAME OVER");-->
+               <!--setTimeout(interval);-->
+			   <!--clearInterval(interval);-->
 
-  function drawPaddle () {
-    ctx.beginPath();
-    ctx.rect( paddle.coordinates.x, paddle.coordinates.y, paddle.width, paddle.height);
-    ctx.fillStyle = "red";
-    ctx.fill();
-    ctx.closePath();
-  }
-  function movePaddle (event) {
-    let currentCoordinate = event.x - paddle.width / 2 - event.path[0].offsetLeft;
-    paddle.coordinates.currentCenterPosition = currentCoordinate;
-    paddle.coordinates.x = currentCoordinate ;
-
-  }
+			 <!--}-->
 
 
-  let flag = true;
-
-  const doMoreBalls = () => {
-    if(counter < maxBallCount) {
-     flag ? balls.push(new Ball) : balls.push(new Rect);
-      flag = !flag;
-      counter++
-    } else {
-      clearInterval(doMoreBalls, intervatToNewBall);}
-
-  };
-
-  const balls = [new Rect()];
-   let counter = 1;
-   setInterval(doMoreBalls, intervatToNewBall);
-
-   const win = function () {
-     alert('Winner');
-     document.location.reload();
-     clearInterval(interval);
-   };
-
-  setTimeout(win, timeToWin);
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i< balls.length; i++ ) {
-      balls[i].start();
-    }
-    console.dir( balls);
-
-    drawPaddle ();
-    canvas.addEventListener('mousemove', movePaddle);
-  }
- const interval = setInterval(draw, 10);
+			<!--this.name.coordinates.x += this.name.coordinates.dx;-->
+			<!--this.name.coordinates.y += this.name.coordinates.dy;-->
+		  <!--}-->
 
 
-</script>
-    </footer>
-  </body>
+		<!--}-->
+		<!--// падающие квадраты-->
+		<!--class Rect extends Ball {-->
+		   <!--constructor(){-->
+			 <!--super();-->
+			 <!--this.name.width = 10;-->
+			 <!--this.name.heighth = 10;-->
+			 <!--this.name.color = 'green'-->
+			 <!--}-->
+
+		  <!--draw () {-->
+			<!--ctx.beginPath();-->
+			<!--ctx.rect( this.name.coordinates.x, this.name.coordinates.y, this.name.width,  this.name.heighth);-->
+			<!--ctx.fillStyle = this.name.color;-->
+			<!--ctx.fill();-->
+			<!--ctx.closePath();-->
+		  <!--}-->
+
+		<!--}-->
+
+
+      <!--class Triangle extends Ball {-->
+        <!--constructor(){-->
+          <!--super();-->
+          <!--this.name.width = 10;-->
+          <!--this.name.heighth = 10;-->
+          <!--this.name.color = '#000000'-->
+        <!--}-->
+        <!--draw () {-->
+          <!--ctx.beginPath();-->
+          <!--ctx.moveTo(this.name.coordinates.x, this.name.coordinates.y);-->
+          <!--ctx.lineTo(this.name.coordinates.x + this.name.width, this.name.coordinates.y + this.name.heighth);-->
+          <!--ctx.lineTo(this.name.coordinates.x + this.name.width, this.name.coordinates.y );-->
+          <!--ctx.fillStyle = this.name.color;-->
+          <!--ctx.fill();-->
+          <!--ctx.closePath();-->
+        <!--}-->
+
+      <!--}-->
+
+
+	  <!--// больше шаров-->
+		<!--const doMoreBalls = () => {-->
+		  <!--if(counter < maxBallCount) {-->
+		    <!--let random = Math.floor(Math.random() * 3);-->
+		    <!--switch (random) {-->
+		      <!--case 0:-->
+                <!--gameViewier.balls.push(new Ball());-->
+		        <!--break;-->
+              <!--case 1:-->
+                <!--gameViewier.balls.push(new Triangle());-->
+                <!--break;-->
+              <!--case 2:-->
+                <!--gameViewier.balls.push(new Rect());-->
+                <!--break;-->
+		    <!--}-->
+
+			<!--counter++-->
+		  <!--} else {-->
+			<!--clearInterval(moreDrops);}-->
+
+		<!--};-->
+
+
+		<!--// массив шаров  в игре-->
+      <!--gameViewier.balls.push(new Rect());-->
+		 <!--let counter = 1;-->
+		 <!--const moreDrops = setInterval(doMoreBalls, intervatToNewBall);-->
+
+		 <!--const win = function () {-->
+		   <!--alert('Winner');-->
+           <!--setTimeout(interval);-->
+		   <!--clearInterval(interval);-->
+		 <!--};-->
+
+		<!--const winTimeout = setTimeout(win, timeToWin);-->
+
+
+
+      <!--const paddle = new Paddle();-->
+
+      <!--// запуск игры-->
+      <!--function game() {-->
+        <!--ctx.clearRect(0, 0, canvas.width, canvas.height);-->
+		<!--for (let i = 0; i< gameViewier.balls.length; i++ ) {-->
+          <!--gameViewier.balls[i].start();-->
+		<!--}-->
+
+        <!--paddle.draw();-->
+        <!--canvas.addEventListener('mousemove', ()=> {paddle.move(event)});-->
+      <!--}-->
+
+
+      <!--const interval = setInterval(game, 10);-->
+
+
+	<!--</script>-->
+<!--//</footer>-->
+</body>
 </html>
